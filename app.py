@@ -1,5 +1,7 @@
 import streamlit as st
 import pandas as pd
+import matplotlib.pyplot as plt
+
 
 st.set_page_config(
     page_title="Cinéma Art & Essai – Creuse",
@@ -26,13 +28,70 @@ if page == "🏠 Contexte Creuse":
     st.title("🏠 Contexte socio-culturel de la Creuse")
 
     st.markdown("""
-    La Creuse est un département marqué par :
-    - une population vieillissante,
-    - un accès culturel limité,
-    - un fort potentiel pour le cinéma Art & Essai.
+    ### 🎯 Pourquoi ce projet ?
+
+    La Creuse est un département rural caractérisé par :
+
+    - une **population vieillissante**,
+    - une **offre culturelle limitée**,
+    - une forte appétence pour les **cinémas de proximité**.
+
+    Le cinéma **Art & Essai** joue un rôle essentiel :
+    il favorise le lien social, l’accès à la culture et la diversité cinématographique,
+    en particulier pour les publics seniors.
     """)
 
-    st.info("Cette application vise à proposer des recommandations adaptées aux publics locaux.")
+    st.info(
+        "👉 Objectif du projet : proposer un système de recommandation de films "
+        "adapté aux goûts du public local de la Creuse."
+    )
+    st.markdown("### 📌 Indicateurs clés (KPI)")
+
+    col1, col2, col3 = st.columns(3)
+
+    col1.metric(
+        label="👵 Population +60 ans",
+        value="36 %",
+        delta="au-dessus de la moyenne nationale"
+    )
+
+    col2.metric(
+        label="🎬 Salles de cinéma",
+        value="4",
+        delta="département rural"
+    )
+
+    col3.metric(
+        label="📉 Accès à l'offre culturelle",
+        value="Faible",
+        delta="opportunité Art & Essai"
+    )
+    st.markdown("### 📊 Répartition de la population par âge (Creuse)")
+
+    # Données simples (exemple INSEE)
+    age_groups = ["0–19", "20–39", "40–59", "60+"]
+    population = [18, 22, 24, 36]  # en %
+
+    fig, ax = plt.subplots()
+    ax.bar(age_groups, population)
+    ax.set_ylabel("Pourcentage (%)")
+    ax.set_xlabel("Tranches d'âge")
+    ax.set_title("Population par tranche d'âge – Creuse")
+
+    st.pyplot(fig)
+    st.markdown("### 🎭 Accès aux équipements culturels")
+
+    zones = ["Creuse", "Moyenne nationale"]
+    access_rate = [35, 62]  # en %
+
+    fig2, ax2 = plt.subplots()
+    ax2.bar(zones, access_rate)
+    ax2.set_ylabel("Accès (%)")
+    ax2.set_title("Accès aux équipements culturels")
+
+    st.pyplot(fig2)
+
+
 
 
 # PAGE 2 — ANALYSE DU MARCHÉ
@@ -55,70 +114,11 @@ elif page == "🎭 Recommandation par acteur":
     st.write("Sélectionnez un acteur pour découvrir des films recommandés.")
 
 
-import streamlit as st
-import pandas as pd
-import matplotlib.pyplot as plt
 
-# ===============================
-# CONFIGURATION GÉNÉRALE
-# ===============================
-st.set_page_config(
-    page_title="Cinéma en Creuse – Étude de marché",
-    layout="wide"
-)
 
-# ===============================
-# TITRE PRINCIPAL
-# ===============================
-st.title("🎬 Étude de marché – Cinéma en Creuse")
+    
 
-st.markdown("""
-Cette page présente le **contexte démographique et culturel**  
-pour justifier un **système de recommandation de films adapté à la Creuse**.
-""")
 
-st.divider()
-
-# ===============================
-# CONTEXTE NATIONAL
-# ===============================
-st.header("📊 Contexte national du cinéma (France)")
-
-st.markdown("""
-- **Fréquentation nationale 2024** : **181 millions d'entrées**
-- **Public 60 ans et +** : **6,3 entrées/an**
-- **Croissance du cinéma Art & Essai** : **+2,9%**
-""")
-
-st.info(
-    "👉 Le public senior est un public actif et fidèle au cinéma, "
-    "particulièrement pour les films Art & Essai."
-)
-
-st.divider()
-
-# ===============================
-# CONTEXTE CREUSE
-# ===============================
-st.header("🗺️ Spécificités de la Creuse")
-
-st.markdown("""
-- Département **rural**
-- **Population vieillissante**
-- Offre culturelle plus limitée
-- Fort potentiel pour une programmation ciblée
-""")
-
-st.success(
-    "🎯 Objectif du projet : proposer des films adaptés "
-    "aux goûts du public senior de la Creuse."
-)
-
-st.divider()
-
-# ===============================
-# SOURCES
-# ===============================
 st.header("🔗 Sources officielles")
 
 st.markdown("""
