@@ -3,4 +3,3 @@ data/people_temp.csv
 data/movie.csv
 .streamlit/
 __pycache__/
-*.csv
