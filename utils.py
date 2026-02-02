@@ -12,7 +12,7 @@ st.set_page_config(page_title="Projet Ciné-Creuse", layout="wide")
 # --- 2. ВСЕ ФУНКЦИИ (ОПРЕДЕЛЯЕМ ЗАРАНЕЕ) ---
 import requests
 
-API_KEY = "8265bd1679663a7ea12ac168da84d2e8"
+API_KEY = st.secrets["TMDB_API_KEY"]
 BASE_URL = "https://api.themoviedb.org/3"
 
 def get_live_data(movie_title):
@@ -74,8 +74,8 @@ def display_movie_card(row):
             <div class="movie-title">{row['title']}</div>
             <div style="margin: 5px 0;">{genres_html}</div>
             <div class="movie-info-row">
-                <span>📅 {int(row['year'])}</span>
-                <span>⏱️ {runtime_text}</span>
+                <span> {int(row['year'])}</span>
+                <span> {runtime_text}</span>
                 <span style="color: #ff9d00; font-weight: bold;">★ {round(row['rating'], 1)}</span>
             </div>
         </div>
@@ -138,10 +138,10 @@ st.divider()
 
 # --- CRÉATION DES ONGLETS ---
 tab1, tab2, tab3, tab4 = st.tabs([
-    "📍 Étude de Marché", 
-    "🧹 Data Engineering ", 
-    "🤖 Modèle ML (KNN) & Pydantic", 
-    "🚀 Démo Application"
+    " Étude de Marché", 
+    " Data Engineering ", 
+    " Modèle ML (KNN) & Pydantic", 
+    " Démo Application"
 ])
 
 # --- TAB 1: ÉTUDE DE MARCHÉ APPROFONDIE ---
@@ -246,12 +246,12 @@ with tab1:
         st.write("- **Fréquence nationale :** 181 millions d'entrées.")
         st.write("- **Dynamisme :** Croissance 'Art et Essai' **+2,9%**.")
         st.write("- **Opportunité :** Le public senior est le plus fidèle avec **6,3 entrées/an**.")
-        st.info("💡 La Creuse, avec sa pyramide des âges, est un marché à fort potentiel pour un catalogue de qualité.")
+        st.info(" La Creuse, avec sa pyramide des âges, est un marché à fort potentiel pour un catalogue de qualité.")
 
     st.divider()
 
     # --- STRATÉGIE DE FILTRAGE ---
-    st.subheader("⚙️ Stratégie de Filtrage : Pourquoi 1960 ?")
+    st.subheader(" Stratégie de Filtrage : Pourquoi 1960 ?")
     
     col_f1, col_f2 = st.columns(2)
     with col_f1:
@@ -281,7 +281,7 @@ with tab2:
     st.info("💡 Cette section explique comment nous avons transformé des fichiers bruts de plusieurs Go en un dataset optimisé.")
 
     # --- 1. CHUNKING ---
-    st.subheader("⚙️ 1. Traitement des Big Data (Chunking)")
+    st.subheader(" 1. Traitement des Big Data (Chunking)")
     col1, col2 = st.columns([2, 1])
     with col1:
         st.write("""
@@ -299,7 +299,7 @@ for chunk in chunks:
             """, language="python")
 
     # --- 2. MERGING ---
-    st.subheader("🔗 2. Fusion Multi-sources (Merging)")
+    st.subheader(" 2. Fusion Multi-sources (Merging)")
     col3, col4 = st.columns([2, 1])
     with col3:
         st.write("""
@@ -316,7 +316,7 @@ df_final = df_tmdb.merge(
             """, language="python")
 
     # --- 3. FILTERING ---
-    st.subheader("🧹 3. Filtrage Multicritères")
+    st.subheader(" 3. Filtrage Multicritères")
     col_f1, col_f2 = st.columns([2, 1])
     with col_f1:
         st.write("""
@@ -356,7 +356,7 @@ df_actors_grouped = df_actors.groupby('tconst')['primaryName']
 
 
    # --- 5. API ENRICHMENT (Твой новый код с переводом) ---
-    st.subheader("🌐 5. Enrichissement via API TMDB (Traduction)")
+    st.subheader(" 5. Enrichissement via API TMDB (Traduction)")
     col3, col4 = st.columns([2, 1])
     with col3:
         st.write("""
@@ -377,7 +377,7 @@ def get_french_overview(imdb_id):
     st.success("✅ Données prêtes pour le moteur de recommandation.")
     st.success("✅ Résultat final : Dataset optimisé de ~25 000 films avec métadonnées complètes.")
     
-    st.subheader("📊 Impact du Nettoyage (Avant vs Après)")
+    st.subheader(" Impact du Nettoyage (Avant vs Après)")
     
     # Данные для сравнения (примерные цифры на основе твоего процесса)
     metrics_data = {
@@ -421,8 +421,8 @@ with tab3:
     # Подсказка для коллеги
     st.info("💡 **Note pour l'équipe :** Cette section montre comment nous sécurisons les données avec Pydantic avant de les injecter dans l'algorithme de recommandation KNN.")
 
-    # --- 🛡️ ЧАСТЬ 1: PYDANTIC (ВАЛИДАЦИЯ) ---
-    st.subheader("🛡️ 1. Contrôle Qualité avec Pydantic")
+    # ---  ЧАСТЬ 1: PYDANTIC (ВАЛИДАЦИЯ) ---
+    st.subheader(" 1. Contrôle Qualité avec Pydantic")
     col_p1, col_p2 = st.columns([2, 1])
     
     with col_p1:
@@ -448,8 +448,8 @@ class MovieValidator(BaseModel):
 
     st.divider()
 
-    # --- 🤖 ЧАСТЬ 2: KNN (АЛГОРИТМ) ---
-    st.subheader("🤖 2. Le Moteur de Recommandation (KNN)")
+    # ---  ЧАСТЬ 2: KNN (АЛГОРИТМ) ---
+    st.subheader(" 2. Le Moteur de Recommandation (KNN)")
     # ВАЖНО: Выполняем обучение прямо здесь, чтобы переменная tfidf_matrix была доступна
     from sklearn.feature_extraction.text import TfidfVectorizer
     from sklearn.neighbors import NearestNeighbors
@@ -465,7 +465,7 @@ class MovieValidator(BaseModel):
     col_math, col_viz = st.columns([1, 2])
     
     with col_math:
-        st.write("### 📐 Logique")
+        st.write("###  Logique")
         st.latex(r"d(x,y) = \sqrt{\sum_{i=1}^{n} (x_i - y_i)^2}")
         st.write("""
         **TF-IDF** transforme les mots en coordonnées. 
@@ -474,7 +474,7 @@ class MovieValidator(BaseModel):
         st.info("🎯 **Objectif :** Trouver les 5 points les plus proches du film sélectionné.")
 
     with col_viz:
-        st.write("### 🌐 Visualisation Mathématique (Espace des Genres)")
+        st.write("###  Visualisation Mathématique (Espace des Genres)")
 
         # Мы используем PCA, чтобы сжать 100+ измерений TF-IDF в 2D график
         pca = PCA(n_components=2)
@@ -504,7 +504,7 @@ def recommend_by_genres(title, df, model, tfidf_matrix):
     st.success("✅ Modèle entraîné et validé. Prêt pour la démonstration !")
 
 
-    # --- 🛠️ ЧАСТЬ 3: КОД (Для коллеги) ---
+    # ---  ЧАСТЬ 3: КОД (Для коллеги) ---
     with st.expander("Voir le code d'entraînement"):
         st.code("""
 # Entraînement sur la matrice TF-IDF
@@ -514,8 +514,8 @@ knn.fit(tfidf_matrix)
 
     st.divider()
 
-    # --- 🛠️ КОД ФУНКЦИИ (ПОДСКАЗКА) ---
-    st.subheader("🛠️ 3. Fonctionnement de la recommandation")
+    # ---  КОД ФУНКЦИИ (ПОДСКАЗКА) ---
+    st.subheader(" 3. Fonctionnement de la recommandation")
     with st.expander("Voir le code de recommandation (TF-IDF + KNN)"):
         st.code("""
 # Vectorisation des genres
