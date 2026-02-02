@@ -601,7 +601,7 @@ with tab4:
 </style>
 """, unsafe_allow_html=True)
 
-    st.markdown("<h1 style='text-align: center; color:#ff9d00;'>🍿 Projecteur : Démo Live</h1>", unsafe_allow_html=True)
+    st.markdown("<h1 style='text-align: center; color:#ff9d00;'> Projecteur : Démo Live</h1>", unsafe_allow_html=True)
     
     # Поиск по центру
     _, col_mid, _ = st.columns([1, 2, 1])
