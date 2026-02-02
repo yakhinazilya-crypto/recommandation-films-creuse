@@ -1,4 +1,5 @@
 altair==6.0.0
+annotated-types==0.7.0
 anyio==4.12.1
 asttokens==3.0.1
 attrs==25.4.0
@@ -64,6 +65,8 @@ psutil==7.2.1
 pure_eval==0.2.3
 pyarrow==22.0.0
 pycparser==2.23
+pydantic==2.12.5
+pydantic_core==2.41.5
 pydeck==0.9.1
 Pygments==2.19.2
 PyJWT==2.10.1
@@ -92,6 +95,7 @@ toml==0.10.2
 tornado==6.5.4
 tqdm==4.67.1
 traitlets==5.14.3
+typing-inspection==0.4.2
 typing_extensions==4.15.0
 tzdata==2025.3
 urllib3==2.6.2
